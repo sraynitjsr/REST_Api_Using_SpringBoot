@@ -24,4 +24,9 @@ public class MyController {
 	public ArrayList<Employee> getEmploees() {
 		return employeeService.getEmployees();
 	}
+	
+	@GetMapping("/employees/{employeeId}")
+	public Employee getEmploees() {
+	
+	}
 }
