@@ -5,5 +5,9 @@ import java.util.ArrayList;
 import com.subhradeep.employeerestapi.entities.Employee;
 
 public interface EmployeeService {	
-	public ArrayList<Employee> getEmployees();	
+	public ArrayList<Employee> getEmployees();
+
+	public static void save(Employee e) {
+		
+	}	
 }

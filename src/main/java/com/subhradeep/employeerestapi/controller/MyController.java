@@ -29,4 +29,9 @@ public class MyController {
 	public Employee getEmploees() {
 	
 	}
+	
+	@PostMapping("/employees")
+	public Employee createEmployee(@Valid @RequestBody Employee e) {
+		EmployeeService.save(e);
+	}
 }
