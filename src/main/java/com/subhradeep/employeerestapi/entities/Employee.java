@@ -1,7 +1,12 @@
 package com.subhradeep.employeerestapi.entities;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+
+@Entity
 public class Employee {
 
+	@Id
 	private long id;
 	private String title;
 	private String description;

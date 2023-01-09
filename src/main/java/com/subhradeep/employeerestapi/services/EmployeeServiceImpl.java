@@ -2,61 +2,49 @@ package com.subhradeep.employeerestapi.services;
 
 import java.util.ArrayList;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.subhradeep.employeerestapi.dao.EmployeeDAO;
 import com.subhradeep.employeerestapi.entities.Employee;
 
 @Service
 public class EmployeeServiceImpl implements EmployeeService {
 
-	ArrayList<Employee> employees;
-	
-	public EmployeeServiceImpl() {
-		employees = new ArrayList<>();
-		employees.add(new Employee(1, "SDE-1", "LLD"));
-		employees.add(new Employee(2, "SDE-2", "HLD"));
-		employees.add(new Employee(3, "SDE-3", "LLD & HLD"));
-	}
-	
+	@Autowired
+	private EmployeeDAO employeeDAO;
+
 	public ArrayList<Employee> getEmployees() {
-		return this.employees;
+		return (ArrayList<Employee>) employeeDAO.findAll();
 	}
 
 	public Employee getEmployee(long employeeId) {
-		Employee temp = null;
-		for(Employee emp:this.employees) {
-			if(emp.getId() == employeeId) {
-				temp = emp;
-				break;
-			}
-		}
-		return temp;
+		return employeeDAO.getReferenceById(employeeId);
 	}
-	
+
 	public void addEmployee(Employee emp) {
-		this.employees.add(emp);
+		employeeDAO.save(emp);
 	}
-	
+
 	public boolean updateDescription(long empId, String description) {
-		boolean flag = false;
-		for(Employee emp:this.employees) {
-			if(emp.getId() == empId) {
-				emp.setDescription(description);
-				flag = true;
-			}
+		String title = this.getEmployee(empId).getTitle();
+		try {
+			employeeDAO.save(new Employee(empId, title, description));
+		} catch (Exception e) {
+			return false;
 		}
-		return flag;
+		return true;
 	}
 
 	public boolean deleteEmployee(long empId) {
-		boolean flag = false;
-		for(Employee emp:this.employees) {
-			if(emp.getId() == empId) {
-				this.employees.remove(emp);
-				flag = true;
-			}
+		String title = this.getEmployee(empId).getTitle();
+		String descrip = this.getEmployee(empId).getDescription();
+		try {
+			employeeDAO.delete(new Employee(empId, title, descrip));
+		} catch (Exception e) {
+			return false;
 		}
-		return flag;
+		return true;
 	}
 }
 
