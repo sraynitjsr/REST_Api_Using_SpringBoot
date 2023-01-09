@@ -46,7 +46,7 @@ public class MyController {
 	}
 	
 	@DeleteMapping("/employees/{employeeId}")
-	public void deleteEmployee(@PathVariable String employeeId) {
-		this.employeeService.deleteEmployee(Long.parseLong(employeeId));
+	public boolean deleteEmployee(@PathVariable String employeeId) {
+		return this.employeeService.deleteEmployee(Long.parseLong(employeeId));
 	}
 }

@@ -48,12 +48,15 @@ public class EmployeeServiceImpl implements EmployeeService {
 		return flag;
 	}
 
-	public void deleteEmployee(long empId) {
+	public boolean deleteEmployee(long empId) {
+		boolean flag = false;
 		for(Employee emp:this.employees) {
 			if(emp.getId() == empId) {
 				this.employees.remove(emp);
+				flag = true;
 			}
 		}
+		return flag;
 	}
 }
 

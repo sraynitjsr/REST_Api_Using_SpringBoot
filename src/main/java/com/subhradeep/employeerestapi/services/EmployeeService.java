@@ -9,5 +9,5 @@ public interface EmployeeService {
 	public Employee getEmployee(long employeeId);
 	public void addEmployee(Employee emp);
 	public boolean updateDescription(long empId, String description);
-	public void deleteEmployee(long empId);
+	public boolean deleteEmployee(long empId);
 }
