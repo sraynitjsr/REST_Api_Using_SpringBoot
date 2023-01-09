@@ -41,8 +41,8 @@ public class MyController {
 	}
 	
 	@PutMapping("/employees/{employeeId}")
-	public void updateEmployeeDescription(@PathVariable String employeeId, @RequestBody String description) {
-		this.employeeService.updateDescription(Long.parseLong(employeeId), description);
+	public boolean updateEmployeeDescription(@PathVariable String employeeId, @RequestBody String description) {
+		return this.employeeService.updateDescription(Long.parseLong(employeeId), description);
 	}
 	
 	@DeleteMapping("/employees/{employeeId}")

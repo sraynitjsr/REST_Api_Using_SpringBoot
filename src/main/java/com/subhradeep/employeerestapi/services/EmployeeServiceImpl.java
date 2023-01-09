@@ -37,12 +37,15 @@ public class EmployeeServiceImpl implements EmployeeService {
 		this.employees.add(emp);
 	}
 	
-	public void updateDescription(long empId, String description) {
+	public boolean updateDescription(long empId, String description) {
+		boolean flag = false;
 		for(Employee emp:this.employees) {
 			if(emp.getId() == empId) {
 				emp.setDescription(description);
+				flag = true;
 			}
 		}
+		return flag;
 	}
 
 	public void deleteEmployee(long empId) {
