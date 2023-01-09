@@ -21,4 +21,36 @@ public class EmployeeServiceImpl implements EmployeeService {
 	public ArrayList<Employee> getEmployees() {
 		return this.employees;
 	}
+
+	public Employee getEmployee(long employeeId) {
+		Employee temp = null;
+		for(Employee emp:this.employees) {
+			if(emp.getId() == employeeId) {
+				temp = emp;
+				break;
+			}
+		}
+		return temp;
+	}
+	
+	public void addEmployee(Employee emp) {
+		this.employees.add(emp);
+	}
+	
+	public void updateDescription(long empId, String description) {
+		for(Employee emp:this.employees) {
+			if(emp.getId() == empId) {
+				emp.setDescription(description);
+			}
+		}
+	}
+
+	public void deleteEmployee(long empId) {
+		for(Employee emp:this.employees) {
+			if(emp.getId() == empId) {
+				this.employees.remove(emp);
+			}
+		}
+	}
 }
+
