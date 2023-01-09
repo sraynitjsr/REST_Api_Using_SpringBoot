@@ -22,7 +22,7 @@ public class MyController {
 	
 	@GetMapping("/")
 	public String home( ) {
-		return "Welcome to the home page";
+		return "Welcome to Employee Management System";
 	}
 
 	@GetMapping("/employees")
